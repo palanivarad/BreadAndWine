@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #070707;>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"> <%= image_tag("logo.png", width: 200, height: 70) %> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Login', login_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= button_to 'Logout', logout_path, method: :delete, data: { turbo_confirm: "Are you sure?", confirm: "Are you sure?" }, class: "nav-link" %>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
