@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    has_many :recipes
     before_save { self.email = email.downcase }
     validates :password, presence: true, length: { minimum: 6, maximum: 25 }
     validates :name, presence: true, length: { minimum: 5, maximum: 25 }

@@ -1,0 +1,46 @@
+<%= javascript_include_tag "application" %>
+<div class="bodycon">
+    <main class="form-signin m-auto bg-dark text-white rounded">
+        <h1 class="h3 mb-3 fw-normal">Let's Cook</h1>    
+            <%= bootstrap_form_with(model: @recipe, local: true) do |f| %>
+                <%= f.text_field :recipe_name %>
+                <%= f.select :cuisine, [["Indian", "indian"], ["Chinese", "chinese"], ["Japanese", "japanese"], ["Italian", "italian"], ["Thai", "thai"], ["Mexican", "mexican"]], { label: "Cuisine", wrapper: { class: 'has-warning' } }, { class: "selectpicker" } %>
+                <%= f.select :kind, [["Veg", "veg"], ["Non-Veg", "nonveg"]], { label: "Type", wrapper: { class: 'has-warning' } }, { class: "selectpicker" } %>
+                <br>
+                <h6> Ingredients </h6>
+                <div id="ingredients">
+                </div>              
+                <input type="button" class="btn btn-info" onclick="addRecipeFields()" value = "Add Item">
+                <br>
+                <h6> Directions </h6>
+                <div id="directions">
+                </div>              
+                <input type="button" class="btn btn-info" onclick="addDirectionFields()" value = "Add Step">
+                <br>
+                <br>
+                <%= f.submit "Serve" %>
+
+                <script defer>
+                    function addRecipeFields() {
+                        var element = document.getElementById("ingredients");
+                        var newContent = "<%= j render(:partial => 'recipe_ingredient_fields', locals: {f: f}) %>";
+                        var newNode = document.createElement('div');
+                        newNode.innerHTML = newContent;
+                        element.appendChild(newNode);
+                    }
+                    function addDirectionFields() {
+                        var element = document.getElementById("directions");
+                        var newContent = "<%= j render(:partial => 'step_fields', locals: {f: f}) %>";
+                        var newNode = document.createElement('div');
+                        newNode.innerHTML = newContent;
+                        element.appendChild(newNode);
+                    }
+                    function deleteFields(element) {
+                        ((element.parentElement).parentElement).parentElement.remove();
+                    }
+                </script>
+
+            <% end %>
+            <br>
+    </main>
+</div>

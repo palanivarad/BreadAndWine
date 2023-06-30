@@ -1,7 +1,13 @@
 {
   "dependencies": {
-    "@doabit/semantic-ui-sass": "^2.4.5",
     "jquery": "^3.7.0",
     "popper.js": "^1.16.1"
-  }
+  },
+  "type": "module",
+  "name": "BreadAndWine",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:palanivarad/BreadAndWine.git",
+  "author": "palanivarad <palanivaradharaj7@gmail.com>",
+  "license": "MIT"
 }

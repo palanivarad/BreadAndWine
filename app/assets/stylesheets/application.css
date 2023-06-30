@@ -15,13 +15,24 @@
  *= require rails_bootstrap_forms
  */
 
- body { 
+ /* @font-face {
+  font-family: 'georgia';
+  src: url('../fonts/georgia\ italic.ttf')
+} */
+
+ body {
+  padding-top: 3.5rem;
+
+ }
+
+ .bodycon { 
     min-height: 75rem;
     padding-top: 5rem;
     background-image: url('background.jpg');
     background-size: 100vw 100vh;
     background-attachment: fixed;
     background-blend-mode:darken;
+    overflow-x: hidden;
 }
 
 .form-signin {
@@ -32,6 +43,46 @@
   .form-signin .form-floating:focus-within {
     z-index: 2;
   }
+.conflash {
+    padding-top: 2rem;
+}
+
 .con {
-    padding-top: 20px;
+  padding-top: 1rem;
+}
+
+.row {
+  padding-top: 20px;
+  justify-content: center;
+}
+
+.how-img img {
+  padding: 2%;
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+.mainDiv {  
+  justify-content: center;
+  margin: auto;
+  padding: 5%;
+  /* background-color: #E0E0CC; */
+
+}
+
+.col-md-6 {
+  margin: auto;
+  position: relative;
+  align-items: center;
+  justify-content:center;
+}
+
+.opacity-75 {
+  color: black;
+}
+
+.form-signin {
+  max-width: 500px;
+  background-color: brown;
 }

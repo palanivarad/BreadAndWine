@@ -47,8 +47,11 @@ gem "bootsnap", require: false
 #stylling UI
 gem "semantic-ui-sass"
 gem "jquery-rails"
+gem 'jquery-ui-rails'
 gem "bootstrap", "~> 5.0"
 gem "bootstrap_form", "~> 5.2"
+gem "coffee-rails"
+gem 'nested_form_fields'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

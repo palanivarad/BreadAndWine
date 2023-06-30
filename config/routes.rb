@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   post "login", to: 'login#create'
   # get "logout", to: 'login#destroy'
   delete "logout", to: 'login#destroy'
+
   resources :user
   get "signup", to: 'user#new'
   post "users", to: 'user#create'
+
+  resources :recipes
 end

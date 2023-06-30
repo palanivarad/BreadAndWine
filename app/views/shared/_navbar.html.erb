@@ -9,12 +9,25 @@
         <li class="nav-item">
           <%= link_to 'Home', root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to 'Login', login_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= button_to 'Logout', logout_path, method: :delete, data: { turbo_confirm: "Are you sure?", confirm: "Are you sure?" }, class: "nav-link" %>
-        </li>
+        <% if logged_in? %>
+          <li class="nav-item">
+            <%= link_to 'Post', new_recipe_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Profile', user_path(session[:user_id]), class: "nav-link" %>
+          </li>          
+          <li class="nav-item">
+            <%= button_to 'Logout', logout_path, method: :delete, data: { turbo_confirm: "Are you sure?", confirm: "Are you sure?" }, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Login', login_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', signup_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

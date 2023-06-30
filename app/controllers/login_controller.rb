@@ -1,6 +1,7 @@
 class LoginController < ApplicationController
 
   def new
+    @user = User.new
   end
 
   def create
@@ -9,6 +10,7 @@ class LoginController < ApplicationController
     if user
       if user.authenticate(params[:login][:password])
         session[:user_id] = user.id
+        current_user
         flash[:notice] = "Logged In Successfully"
         redirect_to root_path
       else
