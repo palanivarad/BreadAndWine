@@ -1,7 +1,7 @@
 class Recipe < ApplicationRecord
     belongs_to :user
-    has_many :recipe_ingredients
-    has_many :steps
+    has_many :recipe_ingredients, dependent: :delete_all
+    has_many :steps, dependent: :delete_all
     has_many :ingredients, through: :recipe_ingredients
     validates :recipe_name, uniqueness: { scope: :user_id, message: "You already posted this recipe" }, presence: true
 

@@ -1,0 +1,56 @@
+<h2 class="text-center mt-4">Search recipes by ingredients</h2>
+<div class="d-flex p-2 justify-content-center">
+    <form class="d-flex " role="search" id= "search-by-ingredients-bar" >
+            <input class="form-control me-2 border-dark" id="ing-query" type="search" placeholder="Enter items separated by ','" aria-label="Search">
+            <button class="btn btn-outline-success" id="search-button" type="submit" disabled> Search </button>
+    </form>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+          document.getElementById('search-by-ingredients-bar').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var query = document.getElementById('ing-query').value;
+            window.location.href = '/recipes?ing_query=' + encodeURIComponent(query);
+          });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('ing-query');
+            var searchButton = document.getElementById('search-button');
+
+            searchInput.addEventListener('input', function() {
+                var inputText = searchInput.value.trim();
+                searchButton.disabled = inputText === '';
+            });
+        });
+
+      </script>
+</div>
+<h1 class="text-center mt-4">Recipes</h1>
+<div class="flickr_pagination">
+  <%= will_paginate @recipes, :container => false %>    
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-auto">
+        <% if @recipes.any? %>
+            <% @recipes.each do |recipe| %>
+                <div class="col mb-3">
+                    <div class="card h-100 bg-dark ">
+                        <%= image_tag "dummy.png", class: "card-img-top" %>
+                        <div class="card-body text-light" style="display: flex; justify-content: space-between;" >
+                                <h4 class="card-title w-50"> <%= recipe.recipe_name %> </h4>
+                                <%= link_to 'View', recipe_path(recipe), class: "btn btn-warning float-right" %>
+                        </div>
+                    </div>
+                </div>
+            <%  end %>
+        <% else %>
+            <div class="col">
+                <div class="card h-100 bg-dark ">
+                    <%= image_tag "dummy.png", class: "card-img-top" %>
+                    <div class="card-body text-light" style="display: flex; justify-content: space-between;" >
+                            <h4 class="card-title"> OOPS! Recipe Not Found</h4>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+

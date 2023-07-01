@@ -52,6 +52,7 @@ gem "bootstrap", "~> 5.0"
 gem "bootstrap_form", "~> 5.2"
 gem "coffee-rails"
 gem 'nested_form_fields'
+gem 'will_paginate'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -49,6 +49,7 @@
 
 .con {
   padding-top: 1rem;
+  margin: auto;
 }
 
 .row {
@@ -84,5 +85,12 @@
 
 .form-signin {
   max-width: 500px;
-  background-color: brown;
+}
+
+.card-title {
+  margin: 0;
+}
+
+.fas {
+  margin-left: auto; 
 }

@@ -1,6 +1,6 @@
 <div class="bodycon">
     <main class="form-signin m-auto bg-dark text-white rounded">
-        <h1 class="h3 mb-3 fw-normal">Let's Cook</h1>    
+        <h1 class="h3 mb-3 fw-normal">Edit Recipe</h1>    
             <%= bootstrap_form_with(model: @recipe, local: true) do |f| %>
                 <%= f.text_field :recipe_name %>
                 <%= f.select :cuisine, [["Indian", "indian"], ["Chinese", "chinese"], ["Japanese", "japanese"], ["Italian", "italian"], ["Thai", "thai"], ["Mexican", "mexican"]], { label: "Cuisine", wrapper: { class: 'has-warning' } }, { class: "selectpicker" } %>
@@ -8,11 +8,17 @@
                 <br>
                 <h6> Ingredients </h6>
                 <div id="ingredients">
+                    <% @recipe_ingredients.each do |item| %>
+                        <%= render(:partial => 'filled_recipe_ingredients', locals: {f: f, item: item}) %>
+                    <% end %>
                 </div>              
                 <input type="button" class="btn btn-info" onclick="addRecipeFields()" value = "Add Item">
                 <br>
                 <h6> Directions </h6>
                 <div id="directions">
+                    <% @steps.each do |step| %>
+                        <%= render(:partial => 'filled_steps', locals: {f: f, step: step}) %>
+                    <% end %>
                 </div>              
                 <input type="button" class="btn btn-info" onclick="addDirectionFields()" value = "Add Step">
                 <br>

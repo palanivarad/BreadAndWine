@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   post "users", to: 'user#create'
 
   resources :recipes
+  get "myrecipes", to: 'recipes#myrecipes'
 end
