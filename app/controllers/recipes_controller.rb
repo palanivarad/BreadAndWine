@@ -37,6 +37,7 @@ class RecipesController < ApplicationController
     end
 
     def index
+        @user = User.find(session[:user_id])
         if params[:query].present?
             if params[:query] =~ /\A[a-zA-Z]+\z/
                 @recipes = Recipe.where("recipe_name LIKE ?", "%#{params[:query]}%").paginate(page: params[:page], per_page: 9)
@@ -50,7 +51,6 @@ class RecipesController < ApplicationController
 
             if valid_ingredients
                 @recipes = Recipe.joins(:ingredients).where(ingredients: { ingredient_name: ingredient_names }).distinct.paginate(page: params[:page], per_page: 9)
-                byebug
             else
                 flash[:alert] = "Invalid Ingredients"
                 redirect_to recipes_path
@@ -76,7 +76,6 @@ class RecipesController < ApplicationController
     end
 
     def update
-        byebug
         @oldrecipe = Recipe.find(params[:id])
         @oldrecipe.destroy
         ActiveRecord::Base.transaction do
@@ -123,7 +122,7 @@ class RecipesController < ApplicationController
 
     private
     def recipes_params
-        params.require(:recipe).permit(:recipe_name, :cuisine, :kind)
+        params.require(:recipe).permit(:recipe_name, :cuisine, :kind, :image)
     end
 
   end

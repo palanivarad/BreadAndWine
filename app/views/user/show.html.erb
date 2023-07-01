@@ -24,15 +24,19 @@
             </button>
             <div class="d-flex justify-content-between text-center mt-5 mb-2">
               <div>
-                <p class="mb-2 h5">8471</p>
+                <p class="mb-2 h5"><%= @user.recipes.length %></p>
                 <p class="text-muted mb-0">Posted</p>
               </div>
               <div class="px-3">
-                <p class="mb-2 h5">8512</p>
+                <% count =0 %>
+                <% @user.recipes.each do |item| %>
+                  <% count += item.favorites.length %>
+                <% end %>
+                <p class="mb-2 h5"><%= count %></p>
                 <p class="text-muted mb-0">Liked</p>
               </div>
               <div>
-                <p class="mb-2 h5">4751</p>
+                <p class="mb-2 h5"><%= @user.favorites.length %></p>
                 <p class="text-muted mb-0">Favorites</p>
               </div>
             </div>

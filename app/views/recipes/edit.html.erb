@@ -5,6 +5,7 @@
                 <%= f.text_field :recipe_name %>
                 <%= f.select :cuisine, [["Indian", "indian"], ["Chinese", "chinese"], ["Japanese", "japanese"], ["Italian", "italian"], ["Thai", "thai"], ["Mexican", "mexican"]], { label: "Cuisine", wrapper: { class: 'has-warning' } }, { class: "selectpicker" } %>
                 <%= f.select :kind, [["Veg", "veg"], ["Non-Veg", "nonveg"]], { label: "Type", wrapper: { class: 'has-warning' } }, { class: "selectpicker" } %>
+                <%= f.file_field :image %>
                 <br>
                 <h6> Ingredients </h6>
                 <div id="ingredients">
@@ -13,6 +14,7 @@
                     <% end %>
                 </div>              
                 <input type="button" class="btn btn-info" onclick="addRecipeFields()" value = "Add Item">
+                <br>
                 <br>
                 <h6> Directions </h6>
                 <div id="directions">

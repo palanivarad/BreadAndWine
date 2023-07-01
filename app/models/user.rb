@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     has_many :recipes
+    has_many :favorites, dependent: :delete_all
+    has_many :favorite_recipes, through: :favorites, source: :recipe
     before_save { self.email = email.downcase }
     validates :password, presence: true, length: { minimum: 6, maximum: 25 }
     validates :name, presence: true, length: { minimum: 5, maximum: 25 }

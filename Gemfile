@@ -53,6 +53,9 @@ gem "bootstrap_form", "~> 5.2"
 gem "coffee-rails"
 gem 'nested_form_fields'
 gem 'will_paginate'
+
+#for processing images
+gem 'image_processing'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

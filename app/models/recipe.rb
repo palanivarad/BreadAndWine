@@ -3,6 +3,9 @@ class Recipe < ApplicationRecord
     has_many :recipe_ingredients, dependent: :delete_all
     has_many :steps, dependent: :delete_all
     has_many :ingredients, through: :recipe_ingredients
+    has_many :favorites, dependent: :delete_all
+    has_many :favorited_by, through: :favorites, source: :user
+    has_one_attached :image, dependent: :destroy
     validates :recipe_name, uniqueness: { scope: :user_id, message: "You already posted this recipe" }, presence: true
 
     accepts_nested_attributes_for :recipe_ingredients, allow_destroy: true, reject_if: :all_blank 

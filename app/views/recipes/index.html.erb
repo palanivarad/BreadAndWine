@@ -23,6 +23,50 @@
             });
         });
 
+        function toggle(x, itemId) {
+            if (x.classList.contains('bi-heart')) {
+                addFavorite(itemId);
+                x.classList.remove('bi-heart');
+                x.classList.add('bi-heart-fill');
+            } else {
+                removeFavorite(itemId);
+                x.classList.remove('bi-heart-fill');
+                x.classList.add('bi-heart');
+            }
+        }
+
+        function addFavorite(itemId) {
+            const url = '/favorites';
+            const params = { item_id: itemId };
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify(params)
+            })
+            .then(response => response.json())
+            .catch(error => console.error('Error:', error));
+        }
+
+        function removeFavorite(itemId) {
+            const url = `/favorites/${itemId}`;
+            const params = { _method: 'DELETE' };
+
+            fetch(url, {
+                method: 'DELETE',
+                headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+                },
+                body: JSON.stringify(params)
+            })
+            .then(response => response.json())
+            .catch(error => console.error('Error:', error));
+        }
+
       </script>
 </div>
 <h1 class="text-center mt-4">Recipes</h1>
@@ -36,6 +80,7 @@
                         <%= image_tag "dummy.png", class: "card-img-top" %>
                         <div class="card-body text-light" style="display: flex; justify-content: space-between;" >
                                 <h4 class="card-title w-50"> <%= recipe.recipe_name %> </h4>
+                                <i onclick="toggle(this, <%= recipe.id %>)" class= "<%= @user.favorites.exists?(recipe_id: recipe.id) ? 'bi bi-heart-fill': 'bi bi-heart'%>"></i>
                                 <%= link_to 'View', recipe_path(recipe), class: "btn btn-warning float-right" %>
                         </div>
                     </div>
