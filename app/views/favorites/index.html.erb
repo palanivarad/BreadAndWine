@@ -1,0 +1,38 @@
+<h1 class="text-center mt-4">Favorite Recipes</h1>
+
+<div class="flickr_pagination">
+  <%= will_paginate @recipes, :container => false %>    
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-4">
+        <% if @recipes.any? %>
+            <% @recipes.each do |recipe| %>
+                <div class="col">
+                    <div class="card h-100 bg-dark ">
+                        <%= image_tag (recipe.image.attached? ? recipe.image.variant(resize_to_fill: [250, 200]) : "dummy.png"), class: "card-img-top" %>
+                        <div class="card-body text-light" >
+                                <h4 class="card-title "> <%= recipe.recipe_name.titleize %> </h4>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <%= button_to 'View', recipe_path(recipe), class: "btn btn-success float-right", style: "margin-right: 5%;" %>&nbsp &nbsp
+                                    <%= button_to 'Remove', '/favorites/' + recipe.id.to_s, method: :delete, class: "btn btn-danger float-right" %>
+                                </div>
+                                <div class="card-body text-light" style="display: flex; justify-content: space-between;"> 
+                                    <h6 class="card-title w-30">By <%=recipe.user.name%></h6>
+                                    <h6 class="card-title w-30"><%=recipe.cuisine.titleize%></h6>
+                                    <h6 class="card-title float-right text-right"><%=recipe.kind.titleize%></h6>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            <%  end %>
+        <% else %>
+            <div class="col">
+                <div class="card h-100 bg-dark ">
+                    <%= image_tag "dummy.png", class: "card-img-top" %>
+                    <div class="card-body text-light" style="display: flex; justify-content: space-between;" >
+                            <h4 class="card-title"> You have no favorites</h4>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
+

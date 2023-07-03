@@ -12,4 +12,149 @@
  *
  *= require_tree .
  *= require_self
+ *= require rails_bootstrap_forms
  */
+
+ /* @font-face {
+  font-family: 'georgia';
+  src: url('../fonts/georgia\ italic.ttf')
+} */
+
+ body {
+  padding-top: 3.5rem;
+
+ }
+
+ .bodycon { 
+    min-height: 75rem;
+    padding-top: 5rem;
+    background-image: url('background.jpg');
+    background-size: 100vw 100vh;
+    background-attachment: fixed;
+    background-blend-mode:darken;
+    overflow-x: hidden;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+  }
+  
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
+.conflash {
+    padding-top: 2rem;
+}
+
+.con {
+  padding-top: 1rem;
+  margin: auto;
+}
+
+.flcon {
+  padding-top: 2rem;
+  margin: auto;
+}
+
+.row {
+  padding-top: 20px;
+  justify-content: center;
+}
+
+.how-img img {
+  padding: 2%;
+  width: 50%;
+  display: block;
+  margin: auto;
+}
+
+.mainDiv {  
+  justify-content: center;
+  margin: auto;
+  padding: 5%;
+  /* background-color: #E0E0CC; */
+
+}
+
+.col-md-6 {
+  margin: auto;
+  position: relative;
+  align-items: center;
+  justify-content:center;
+}
+
+.opacity-75 {
+  color: black;
+}
+
+.form-signin {
+  max-width: 500px;
+}
+
+.card-title {
+  margin: 0;
+}
+
+.fas {
+  margin-left: auto; 
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+#myCarousel {
+  max-width: 1500px; /* Set the maximum width of the carousel */
+  margin: 0 auto; /* Center the carousel horizontally */
+}
+
+.carousel-item img {
+  object-fit: cover; /* Ensure the images fill the carousel item */
+  max-height: 500px; /* Set the maximum height of the images */
+}
+
+
+.alert {
+  padding: 20px;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin: auto;
+  text-align: center;
+  align-self: center;
+  max-width: 500px;
+  
+}
+
+.alert.notice {background-color: #04AA6D;}
+/* .alert.alert {background-color: #f44336;} */
+.alert.error {background-color: #f44336;}
+
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}

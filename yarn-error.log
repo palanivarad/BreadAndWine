@@ -1,0 +1,38 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+
+PATH: 
+  /usr/share/rvm/gems/ruby-3.0.0/bin:/usr/share/rvm/gems/ruby-3.0.0@global/bin:/usr/share/rvm/rubies/ruby-3.0.0/bin:/usr/share/rvm/bin:/home/varadharaj/.rbenv/shims:/home/varadharaj/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.16.1
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: connect ECONNREFUSED 2606:4700:8393:80e2:e439:4:6810:1023:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1494:16)
+
+npm manifest: 
+  {
+    "dependencies": {
+      "jquery": "^3.7.0",
+      "popper.js": "^1.16.1"
+    },
+    "name": "BreadAndWine",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:palanivarad/BreadAndWine.git",
+    "author": "palanivarad <palanivaradharaj7@gmail.com>",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -1,0 +1,11 @@
+<fieldset>
+  <div>
+    <%= f.text_field :ingredient, name: "ingredient[]", label: 'Item'%>
+  </div>
+  <div>
+    <%= f.text_field :quantity, name: "quantity[]" %>
+  </div>
+  <div>
+    <button type="button"  class="btn-close bg-light" onclick="deleteFields(this)" aria-label="Close"></button>
+  </div>
+</fieldset>

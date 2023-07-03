@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #070707;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"> <%= image_tag("logo.png", width: 200, height: 70) %> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: "nav-link" %>
+        </li>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Recipes
+            </a>
+            <ul class="dropdown-menu bg-dark">
+              <li><%= link_to 'All Recipes', recipes_path, class: "dropdown-item bg-dark text-light" %></li>
+              <li><hr class="dropdown-divider border-light"></li>
+              <li><%= link_to 'My Recipes', "/myrecipes", class: "dropdown-item bg-dark text-light" %></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Favorites', favorites_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Post', new_recipe_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Profile', user_path(session[:user_id]), class: "nav-link" %>
+          </li>          
+          <li class="nav-item">
+            <%= button_to 'Logout', logout_path, method: :delete, data: { turbo_confirm: "Are you sure?", confirm: "Are you sure?" }, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Login', login_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', signup_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        
+      </ul>
+      <% if logged_in? %>
+        <form class="d-flex" role="search" id= "search-bar" >
+          <input class="form-control me-2" id="query" type="search" placeholder="Search Food" aria-label="Search">
+          <button class="btn btn-outline-success" id="s-button" type="submit" disabled> Search </button>
+        </form>
+      <% end %>
+
+      <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+          document.getElementById('search-bar').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var query = document.getElementById('query').value;
+            window.location.href = '/recipes?query=' + encodeURIComponent(query);
+          });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('query');
+            var searchButton = document.getElementById('s-button');
+
+            searchInput.addEventListener('input', function() {
+                var inputText = searchInput.value.trim();
+                searchButton.disabled = inputText === '';
+            });
+        });
+      </script>
+    </div>
+  </div>
+</nav>

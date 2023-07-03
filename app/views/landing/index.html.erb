@@ -1,0 +1,141 @@
+<main> 
+    <div id="myCarousel" class="carousel slide mb-6 " data-bs-ride="carousel" data-bs-theme="light">
+
+        <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="3" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="4" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="5" class="active" aria-current="true" aria-label="Slide 1"></button>
+
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <%= image_tag "japanese.jpg", class: "bd-placeholder-img", style: "width: 100%; height: 100%" %>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <p><button class="btn btn-lg btn-primary" onclick="cuisine('japanese')">Japanese Cuisine</button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag "indian.jpg", class: "bd-placeholder-img", style: "width: 100%; height: 100%" %>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <p><button class="btn btn-lg btn-primary" onclick="cuisine('indian')">Indian Cuisine</button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag "chinese.jpg", class: "bd-placeholder-img", style: "width: 100%; height: 100%" %>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <p><button class="btn btn-lg btn-primary" onclick="cuisine('chinese')">Chinese Cuisine</button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag "italian.jpg", class: "bd-placeholder-img", style: "width: 100%; height: 100%" %>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <p><button class="btn btn-lg btn-primary" onclick="cuisine('italian')">Italian Cuisine</button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag "thai.jpeg", class: "bd-placeholder-img", style: "width: 100%; height: 100%" %>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <p><button class="btn btn-lg btn-primary" onclick="cuisine('thai')">Thai Cuisine</button></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <%= image_tag "mexican.jpg", class: "bd-placeholder-img", style: "width: 100%; height: 100%" %>
+                <div class="container">
+                    <div class="carousel-caption text-start">
+                        <p><button class="btn btn-lg btn-primary" onclick="cuisine('mexican')">Mexican Cuisine</button></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next " type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <script defer>
+        function cuisine(cui) {
+            window.location.href = '/recipes?cuisine=' + encodeURIComponent(cui);
+
+        }
+    </script>
+
+</main>
+
+
+<div class = "mainDiv">
+
+    <div >
+        <h1>Welcome to Bread & Wine - Where Anyone can Cook!</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 how-img">
+            <%= image_tag("about_pic0.png") %>
+        </div>
+        <div class="col-md-6">
+                <h3>Indulge in a Gastronomic Wonderland </h3>
+                <p class="aboutpara"> At Bread & Wine, we invite you to embark on a tantalizing journey through the realm of flavors and aromas. Our food recipe app is your gateway to a culinary wonderland, where every dish tells a story and every bite is a moment of pure bliss. </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Unleash Your Inner Epicurean</h3>
+            <p> Immerse yourself in a world of gastronomic artistry as you explore our extensive collection of meticulously curated recipes. From age-old classics that evoke nostalgia to innovative creations that push the boundaries of taste, our app caters to both the traditionalist and the adventurous food lover. </p>
+        </div>
+        <div class="col-md-6 how-img">
+            <%= image_tag("about_pic1.jpg") %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 how-img">
+            <%= image_tag("about_pic2.jpg") %>
+        </div>
+        <div class="col-md-6">
+            <h3>Exquisite Recipes at Your Fingertips</h3>
+            <p> Savor the experience of culinary excellence with our app's treasure trove of recipes. Each dish is presented with utmost care, offering detailed instructions, precise measurements, and expert techniques to ensure your culinary triumph. Our commitment to excellence means that every recipe is tested and perfected, guaranteeing exceptional results. </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Unleash Your Inner Chef, Tailored to You</h3>
+            <p> We understand that culinary artistry is as unique as the individuals who partake in it. With Bread & Wine, you have the power to personalize your culinary journey. Unleash your inner chef and create masterpieces that resonate with your taste buds.</p>
+        </div>
+        <div class="col-md-6 how-img">
+            <%= image_tag("about_pic3.jpg") %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 how-img">
+            <%= image_tag("about_pic4.jpg") %>
+        </div>
+        <div class="col-md-6">
+                <h3>A Community United by Passion</h3>
+                <p> Bread & Wine is not just an app; it's a vibrant community of passionate food enthusiasts. Connect with fellow gastronomes, share your own culinary masterpieces, and exchange tips and tricks that elevate your skills. Together, we cultivate an environment where creativity flourishes and where everyone finds inspiration in each other's culinary triumphs. </p>
+        </div>
+    </div>
+
+    <h2>Savor the experience. Savor life.</h2>
+
+</div>

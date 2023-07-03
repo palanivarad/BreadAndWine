@@ -1,0 +1,11 @@
+<%= bootstrap_form_with(model: @user, local: true) do |f| %>
+    <%= f.text_field :name %>
+    <%= f.email_field :email %>
+    <%= f.select :gender, [["Male", "male"], ["Female", "female"], ["Other", "other"]], { label: "Gender", wrapper: { class: 'has-warning' } }, { class: "selectpicker" } %>
+    <%= f.password_field :password %>
+    <%= f.password_field :password_confirmation, label: 'Confirm Password' %>
+    <%= f.submit @elem %>
+<% end %>
+<br>
+
+    
