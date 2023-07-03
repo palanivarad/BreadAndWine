@@ -12,23 +12,30 @@ class RecipesController < ApplicationController
                 ingredients = params[:ingredient]
                 quantity = params[:quantity]
                 directions = params[:directions]
-                ingredients.zip(quantity).each do |ing, quan|
-                    @ingredient = Ingredient.find_or_create_by(ingredient_name: ing)
-                    @recipe_ingredient = RecipeIngredient.new(recipe_id: @recipe.id, ingredient_id: @ingredient.id, quantity: quan)
-                    if  !@recipe_ingredient.save
-                        raise ActiveRecord::Rollback
+                if ingredients.empty? || directions.empty? 
+                    flash[:alert] = "Ingredients or Directions Should not be empty"
+                    render 'new'
+                else
+                    ingredients.zip(quantity).each do |ing, quan|
+                        @ingredient = Ingredient.find_or_create_by(ingredient_name: ing)
+                        @recipe_ingredient = RecipeIngredient.find_or_initialize_by(recipe_id: @recipe.id, ingredient_id: @ingredient.id)
+                        @recipe_ingredient.quantity = quan
+                        if  !@recipe_ingredient.save
+                            raise ActiveRecord::Rollback
+                        end
                     end
-                end
-                count = 1
-                directions.each do |step|
-                    @direction = Step.new(recipe_id: @recipe.id, step_no: count, direction: step)
-                    if !@direction.save 
-                        raise ActiveRecord::Rollback
+                    directions = directions.chunk { |element| element }.map(&:first)
+                    count = 1
+                    directions.each do |step|
+                        @direction = Step.new(recipe_id: @recipe.id, step_no: count, direction: step)
+                        if !@direction.save 
+                            raise ActiveRecord::Rollback
+                        end
+                        count += 1
                     end
-                    count += 1
+                    flash[:notice] = "Recipe posted sucessfully!"
+                    redirect_to root_path
                 end
-                flash[:notice] = "Recipe posted sucessfully!"
-                redirect_to root_path
             else
                 flash[:alert] = "Couldn't cook recipe. Please, Try Again."
                 render 'new'
@@ -40,7 +47,7 @@ class RecipesController < ApplicationController
         @user = User.find(session[:user_id])
         if params[:query].present?
             if params[:query] =~ /\A[a-zA-Z]+\z/
-                @recipes = Recipe.where("recipe_name LIKE ?", "%#{params[:query]}%").paginate(page: params[:page], per_page: 9)
+                @recipes = Recipe.where("recipe_name LIKE ?", "%#{params[:query].downcase}%").paginate(page: params[:page], per_page: 9)
             else
                 flash[:alert] = "Invalid Request"
                 redirect_to recipes_path
@@ -48,6 +55,7 @@ class RecipesController < ApplicationController
         elsif params[:ing_query].present?
             ingredient_names = params[:ing_query].split(',').map(&:strip)
             valid_ingredients = ingredient_names.all? { |element| element =~ /\A[a-zA-Z]+\z/ }
+            ingredient_names = ingredient_names.map(&:downcase)
 
             if valid_ingredients
                 @recipes = Recipe.joins(:ingredients).where(ingredients: { ingredient_name: ingredient_names }).distinct.paginate(page: params[:page], per_page: 9)
@@ -55,7 +63,8 @@ class RecipesController < ApplicationController
                 flash[:alert] = "Invalid Ingredients"
                 redirect_to recipes_path
             end
-
+        elsif params[:cuisine].present?
+            @recipes = Recipe.where("cuisine LIKE ?", "%#{params[:cuisine].downcase}%").paginate(page: params[:page], per_page: 9)
         else
             @recipes = Recipe.paginate(page: params[:page], per_page: 9)
         end
@@ -76,37 +85,44 @@ class RecipesController < ApplicationController
     end
 
     def update
-        @oldrecipe = Recipe.find(params[:id])
-        @oldrecipe.destroy
-        ActiveRecord::Base.transaction do
+        # ActiveRecord::Base.transaction do
+            @oldrecipe = Recipe.find(params[:id])
+            @oldrecipe.destroy
             @recipe = Recipe.new(recipes_params)
             @recipe.user_id = session[:user_id]
             if @recipe.save
                 ingredients = params[:ingredient]
                 quantity = params[:quantity]
                 directions = params[:directions]
-                ingredients.zip(quantity).each do |ing, quan|
-                    @ingredient = Ingredient.find_or_create_by(ingredient_name: ing)
-                    @recipe_ingredient = RecipeIngredient.new(recipe_id: @recipe.id, ingredient_id: @ingredient.id, quantity: quan)
-                    if  !@recipe_ingredient.save
-                        raise ActiveRecord::Rollback
+                if !ingredients || !directions || ingredients.empty? || directions.empty? 
+                    flash[:alert] = "Ingredients or Directions Should not be empty"
+                    render 'edit'
+                else
+                    ingredients.zip(quantity).each do |ing, quan|
+                        @ingredient = Ingredient.find_or_create_by(ingredient_name: ing)
+                        @recipe_ingredient = RecipeIngredient.find_or_initialize_by(recipe_id: @recipe.id, ingredient_id: @ingredient.id)
+                        @recipe_ingredient.quantity = quan
+                        if  !@recipe_ingredient.save
+                            raise ActiveRecord::Rollback
+                        end
                     end
-                end
-                count = 1
-                directions.each do |step|
-                    @direction = Step.new(recipe_id: @recipe.id, step_no: count, direction: step)
-                    if !@direction.save 
-                        raise ActiveRecord::Rollback
+                    directions = directions.chunk { |element| element }.map(&:first)
+                    count = 1
+                    directions.each do |step|
+                        @direction = Step.new(recipe_id: @recipe.id, step_no: count, direction: step)
+                        if !@direction.save
+                            raise ActiveRecord::Rollback
+                        end
+                        count += 1
                     end
-                    count += 1
+                    flash[:notice] = "Recipe edited sucessfully!"
+                    redirect_to root_path
                 end
-                flash[:notice] = "Recipe edited sucessfully!"
-                redirect_to root_path
             else
                 flash[:alert] = "Couldn't cook recipe. Please, Try Again."
-                render 'new'
+                render 'edit'
             end
-        end
+        # end
 
     end
   

@@ -1,0 +1,10 @@
+<div class="bodycon">
+    <main class="form-signin w-100 m-auto bg-dark text-white rounded">
+        <h1 class="h3 mb-3 fw-normal">Forgot your password?</h1>
+        <%= bootstrap_form_with url: '/password/forgot' do |f| %>
+            <%= f.text_field :email %>
+            <%= f.submit 'Reset Password' %>
+        <%end%>
+
+    </main>
+</div>

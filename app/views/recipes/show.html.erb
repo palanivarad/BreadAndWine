@@ -1,8 +1,14 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-12">
-      <h2><%= @recipe.recipe_name %></h2>
-      <%= image_tag "dummy.png" %>
+      <h2><%= @recipe.recipe_name.titleize %></h2>
+      <%= image_tag (@recipe.image.attached? ? @recipe.image.variant(resize_to_fill: [350, 300]) : "dummy.png") %>
+      <br><br>
+      <div style="display: flex; justify-content: space-between;"> 
+
+          <h6 class="card-title w-50"><%=@recipe.cuisine.titleize%></h6>
+          <h6 class="card-title float-right w-50 text-right"><%=@recipe.kind.titleize%></h6>
+      </div>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-12">
       <h4>Ingredients</h4>
@@ -16,15 +22,15 @@
             <tbody>
                 <% @recipe_ingredients.each do |item| %>
                     <tr>
-                        <td> <%= item.ingredient.ingredient_name %> </td>
-                        <td> <%= item.quantity %> </td>
+                        <td> <%= item.ingredient.ingredient_name.titleize %> </td>
+                        <td> <%= item.quantity.titleize %> </td>
                     </tr>
                 <% end %>
             </tbody>
         </table>
     </div>
   </div>
-
+<br>
   <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12">
       <h4>Directions</h4>
@@ -41,4 +47,5 @@
         <%= link_to 'Back', :back , class: "btn btn-warning float-left " %>
     </div>
   </div>
+  
 </div>

@@ -72,16 +72,23 @@
 <h1 class="text-center mt-4">Recipes</h1>
 <div class="flickr_pagination">
   <%= will_paginate @recipes, :container => false %>    
-    <div class="row row-cols-1 row-cols-md-3 g-4 m-auto">
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-4">
         <% if @recipes.any? %>
             <% @recipes.each do |recipe| %>
                 <div class="col mb-3">
                     <div class="card h-100 bg-dark ">
-                        <%= image_tag "dummy.png", class: "card-img-top" %>
+                        <%= image_tag (recipe.image.attached? ? recipe.image.variant(resize_to_fill: [250, 200]) : "dummy.png"), class: "card-img-top" %>
                         <div class="card-body text-light" style="display: flex; justify-content: space-between;" >
-                                <h4 class="card-title w-50"> <%= recipe.recipe_name %> </h4>
-                                <i onclick="toggle(this, <%= recipe.id %>)" class= "<%= @user.favorites.exists?(recipe_id: recipe.id) ? 'bi bi-heart-fill': 'bi bi-heart'%>"></i>
+                                <h4 class="card-title w-50"> <%= recipe.recipe_name.titleize %> </h4>
+                                <% if session[:user_id] != recipe.user_id %>
+                                    <i onclick="toggle(this, <%= recipe.id %>)" class= "<%= @user.favorites.exists?(recipe_id: recipe.id) ? 'bi bi-heart-fill': 'bi bi-heart'%>"></i>
+                                <% end %>
                                 <%= link_to 'View', recipe_path(recipe), class: "btn btn-warning float-right" %>
+                        </div>
+                        <div class="card-body text-light" style="display: flex; justify-content: space-between;"> 
+                            <h6 class="card-title w-30">By <%=recipe.user.name%></h6>
+                            <h6 class="card-title w-30"><%=recipe.cuisine.titleize%></h6>
+                            <h6 class="card-title float-right text-right"><%=recipe.kind.titleize%></h6>
                         </div>
                     </div>
                 </div>

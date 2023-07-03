@@ -13,9 +13,11 @@ class UserController < ApplicationController
     if params[:user][:password] == params[:user][:password_confirmation]
       
       if @user.save
-        flash[:notice] = "Sign Up Successful"
-        redirect_to signup_path
+        UserMailer.registration_confirmation(@user).deliver
+        flash[:notice] = "Please confirm your email address to continue"
+        redirect_to '/login'
       else
+        flash[:alert] = " OOPS! Try again."
         render 'new'
       end
     else
@@ -37,6 +39,20 @@ class UserController < ApplicationController
       render 'edit'
     end
   end
+
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Welcome to the Bread & Wine! Your email has been confirmed.
+      Please sign in to continue."
+      redirect_to '/login'
+    else
+      flash[:error] = "OOPS! User does not exist"
+      redirect_to root_url
+    end
+end
 
   private
 

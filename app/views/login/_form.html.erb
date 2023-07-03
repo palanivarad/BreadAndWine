@@ -4,6 +4,8 @@
         <%= bootstrap_form_with(scope: :login, url: login_path, local: true) do |f| %>
             <%= f.email_field :email %>
             <%= f.password_field :password %>
+            <%= link_to 'Forgot password?', 'password/forgot' %>
+            <br>
             <%= f.submit "Log In" %>
         <% end %>
 

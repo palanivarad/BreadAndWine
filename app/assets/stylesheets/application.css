@@ -52,6 +52,11 @@
   margin: auto;
 }
 
+.flcon {
+  padding-top: 2rem;
+  margin: auto;
+}
+
 .row {
   padding-top: 20px;
   justify-content: center;
@@ -93,4 +98,63 @@
 
 .fas {
   margin-left: auto; 
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+#myCarousel {
+  max-width: 1500px; /* Set the maximum width of the carousel */
+  margin: 0 auto; /* Center the carousel horizontally */
+}
+
+.carousel-item img {
+  object-fit: cover; /* Ensure the images fill the carousel item */
+  max-height: 500px; /* Set the maximum height of the images */
+}
+
+
+.alert {
+  padding: 20px;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin: auto;
+  text-align: center;
+  align-self: center;
+  max-width: 500px;
+  
+}
+
+.alert.notice {background-color: #04AA6D;}
+/* .alert.alert {background-color: #f44336;} */
+.alert.error {background-color: #f44336;}
+
+.alert.info {background-color: #2196F3;}
+.alert.warning {background-color: #ff9800;}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
 }

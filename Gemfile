@@ -56,6 +56,8 @@ gem 'will_paginate'
 
 #for processing images
 gem 'image_processing'
+gem 'mini_magick'
+gem 'ruby-vips'
 # Use Sass to process CSS
 # gem "sassc-rails"
 

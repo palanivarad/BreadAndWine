@@ -1,0 +1,15 @@
+<div class="bodycon">
+    <main class="form-signin w-100 m-auto bg-dark text-white rounded">
+        <h1 class="h3 mb-3 fw-normal">Reset your password</h1>
+        <%= bootstrap_form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |form| %>
+          <div class="field">
+            <%= form.password_field :password %>
+          </div>
+          <div class="field">
+            <%= form.password_field :password_confirmation %>
+          </div>
+          <%= form.submit 'Reset Password' %>
+        <%end%>
+
+    </main>
+</div>
