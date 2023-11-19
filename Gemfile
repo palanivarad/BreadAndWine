@@ -60,6 +60,8 @@ gem 'mini_magick'
 gem 'ruby-vips'
 
 gem 'execjs', "~> 2.9.1"
+gem 'mini_racer', platforms: :ruby
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

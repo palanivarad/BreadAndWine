@@ -21,6 +21,10 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libvips pkg-config
 
+# Install Node.js
+RUN apt-get update && \
+    apt-get install -y nodejs npm
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \
