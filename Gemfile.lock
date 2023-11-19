@@ -267,6 +267,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   debug
+  execjs
   image_processing
   importmap-rails
   jbuilder

@@ -60,7 +60,6 @@ gem 'mini_magick'
 gem 'ruby-vips'
 
 gem 'execjs'
-gem 'therubyracer', :platforms => :ruby
 # Use Sass to process CSS
 # gem "sassc-rails"
 
