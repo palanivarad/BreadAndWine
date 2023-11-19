@@ -58,6 +58,9 @@ gem 'will_paginate'
 gem 'image_processing'
 gem 'mini_magick'
 gem 'ruby-vips'
+
+gem 'execjs'
+gem 'therubyracer', :platforms => :ruby
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -86,5 +89,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem "byebug"
 end
