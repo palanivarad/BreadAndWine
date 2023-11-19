@@ -106,7 +106,7 @@ GEM
       irb (>= 1.5.0)
       reline (>= 0.3.1)
     erubi (1.12.0)
-    execjs (2.8.1)
+    execjs (2.9.1)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -267,7 +267,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   debug
-  execjs
+  execjs (~> 2.9.1)
   image_processing
   importmap-rails
   jbuilder

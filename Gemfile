@@ -59,7 +59,7 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'ruby-vips'
 
-gem 'execjs'
+gem 'execjs', "~> 2.9.1"
 # Use Sass to process CSS
 # gem "sassc-rails"
 
